@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "IBM Plex Sans Thai", sans-serif;
+}
+
+.adjust-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text {
+  font-family: "IBM Plex Sans Thai", sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  text-align: left;
+  padding: 20px 0;
+}
+
+.text1 {
+  font-family: "IBM Plex Sans Thai", sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  text-align: left;
+  display: inline-block;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 60%;
+}
+
+.clear-search {
+  font-family: "IBM Plex Sans Thai", sans-serif;
+  font-size: 12px;
+  text-align: right;
+  text-decoration: underline;
+  margin-right: 2vh;
+  padding-top: 10px;
+}
+.box {
+  text-align: center;
+  border-radius: 9px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #d1d1d1;
+  padding: 1rem;
+  flex: 100%;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: -25px;
+}
+
+/* pagination */
+
+.pagination {
+  justify-content: center;
+  padding-left: 0;
+  list-style: none;
+  margin-left: auto;
+  display: flex;
+}
+
+.page-link {
+  display: block;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 2px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+a.page-link:hover {
+  background-color: #cccccc;
+}
+
+.page-item.active .page-link {
+  color: #ffffff;
+  background-color: #007bff;
+}
+
+/* Responsive layout - makes a one column-layout instead of a two-column layout */
+@media (max-width: 600px) {
+  .box {
+    width: auto;
+    padding: auto;
+  }
+  .status {
+    margin-top: 25px;
+    justify-content: flex-start;
+  }
+  .boxlist {
+    margin-top: 25px;
+  }
+}
+
+.statusPending {
+  background-color: #dbecfd;
+  padding: 5px 7px;
+  border-radius: 40px;
+  color: #003389;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.iconPending {
+  color: #003389;
+  padding-right: 7px;
+  margin-top: 5px;
+}
+
+.orderStatus {
+  padding: 0;
+}
+
+Input {
+  font-family: "IBM Plex Sans Thai", sans-serif;
+}
+
+@media screen and (max-width: 1000px) {
+  .flex-container {
+    width: 100%;
+  }
+  
+}
+
+
+@media screen and (max-width: 600px) {
+  /* .statusPending{
+    padding: 5px 20px;
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    } */
+
+  .statusPending {
+    display: inline-flex;
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 30px;
+    margin: auto;
+    align-items: center;
+  }
+
+  .iconPending {
+    margin: auto;
+  }
+
+  .orderStatus {
+    margin-left: 10px;
+  }
+
+  .pagination {
+    padding-bottom: 10px;
+    margin-top: -15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .box {
+    padding: 5px;
+    border-width: 1px;
+  }
+}

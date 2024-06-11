@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap");
+* {
+  font-family: "IBM Plex Sans Thai", sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  margin: 1rem auto;
+  font-size: 16px;
+}
+
+.backPage{
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #242424;
+}
+
+/* column */
+
+/* Create two equal columns that floats next to each other */
+.columnApprove {
+  float: left;
+  width: 60%;
+
+}
+
+.columnDetail {
+  float: left;
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.row{
+  margin-top: 40px;
+}
+
+/* status button */
+.status-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.status-button {
+  padding: 5px 20px;
+  width: 135px;
+  height: 35px;
+  border: none;
+  border-radius: 21px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.not-approved {
+  background-color: #FFE6E6;
+  color: #D01000;
+}
+
+.icon-move {
+  vertical-align: -2px;
+  margin-right: 5px;
+}
+
+.pending {
+  background-color: #FFEDC0;
+  color: #7E5600;
+}
+
+.approved {
+  background-color: #E3F5DA;
+  color: #267800;
+}
+
+.orderAprrove{
+  /* width: 455px;
+  height: 35px; */
+  width: 50%;
+  padding: 7px 10px;
+  margin-top: 30px;
+  background-color: #DBECFD;
+  color: #003389;
+  text-align: center;
+  border-radius: 21px;
+  font-size: 18px;
+}
+
+.order{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* select page */
+.select-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.move-text-back{
+  padding-right: 10px;
+}
+.move-text-forward{
+  padding-left: 10px;
+}
+.back-page-doc{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.forward-page-doc{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+ .download{
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 14px;
+} 
+
+/* content doc file */
+.boxDoc{
+  margin-top: 30px;
+  width: 100%;
+  height: auto;
+  border: 1.5px solid #ddd;
+  padding: 200px 100px;
+  text-align: center;
+  border-radius: 9px;
+  color: #242424;
+
+}
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1000px) {
+
+  .columnApprove {
+    width: 100%;
+  }
+   .columnDetail {
+    width: 100%;
+  }
+  .status-button {
+    width: 33.33%;
+    font-size: 16px;
+  }
+  .orderAprrove{
+    width: 100%;
+    padding: 5px 10px;
+    margin-top: 30px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 400px){
+  .status-button{
+    font-size: 13px;
+  }
+}
