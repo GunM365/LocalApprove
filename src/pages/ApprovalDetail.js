@@ -49,27 +49,8 @@ function ApprovalDetail() {
     fetchData();  
 }, [id]);
 
-// useEffect(() => {
-//   const fetchData = async () => {
-//       try {
-//           const response = await fetch('/api/v2/memos', {
-//             headers: {
-//                 'x-api-key': process.env.REACT_APP_API_KEY
-//             }
-//         });
-//           const data = await response.json();
-//           setMemoData(data); // Update the state with fetched data
-//       } catch (error) {
-//           console.error("Error fetching data:", error);
-//       }
-      
-//   };
 
-//   fetchData(); 
-// }, []);
     
-  
-  console.log(memoData)
 
   const handleModalApprove = () => {
     setShowModalOne(!showModalOne);
@@ -222,13 +203,8 @@ function ApprovalDetail() {
           </div>
           
           <div className="columnDetail">
-            {isLoading ? (
-            <p>Loading...</p>
-          ) : error ? (
-            <p>Error: {error}</p>
-          ) : memoData ? ( // ตรวจสอบ memoData ก่อน
-            <Sidebar data={memoData} /> 
-          ) : null}
+            {console.log(memoData)}
+          {memoData && <Sidebar data={memoData} />}
           </div>
           
 

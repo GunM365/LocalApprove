@@ -3,20 +3,27 @@ import React from 'react';
 import { Pivot, PivotItem } from '@fluentui/react';
 
 
-const Sidebar = ({memoData}) => {
-    console.log(memoData)
+const Sidebar = ({data}) => {
+    
     const comments = [
         { label: 'ความคิดเห็นโดย', value: 'Lorem Ipsum' },
         { label: 'เหตุผลที่ต้องแก้ไข', value: 'อัปโหลดเอกสารผิด' },
     ];
-      const details = [
-        { label: 'เรื่อง', value:'memoData.subject' },
-        { label: 'เลขที่เอกสาร', value: 'DEFAULT-PR-202404-0001' },
-        { label: 'สร้างโดย', value: 'Lorem Ipsum' },
-        { label: 'วันที่หมดอายุ', value: 'ไม่มีวันหมดอายุ' },
-        { label: 'สำเนาถึง', value: 'ไม่มีสำเนาถึง' },
-        { label: 'ประกาศ', value: 'ไม่มีประกาศ' },
-    ];
+    const ccElements = data.cc ? (
+        <>
+          {data.cc.map((email, index) => (
+            <div key={index}><a>{email}</a></div>
+          ))}
+        </>
+      ) : "ไม่มีสำเนาถึง";
+    
+    const details = data ? [
+        { label: 'เรื่อง', value: data.subject || "Loading..." },
+        { label: 'เลขที่เอกสาร', value: data.id || "Loading..." }, // Corrected property name
+        { label: 'สร้างโดย', value: data.createrEmail || "Loading..." },
+        { label: 'สำเนาถึง', value: ccElements || "ไม่มีสำเนาถึง" },
+      ]
+    : [];
     
     return (
         <div className="containerSide">
