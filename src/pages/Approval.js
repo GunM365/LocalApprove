@@ -95,18 +95,6 @@ function App() {
         <div className={styles.root}>
           <Input placeholder="ค้นหารายการ" input={{ style:{ fontFamily: "IBM Plex Sans Thai"}  }}/>
           </div>
-        <div className={styles.root}>
-        <Dropdown placeholder="ประเภทของเอกสาร" appearance="outline" button={{ style:{ fontFamily: "IBM Plex Sans Thai"}  }} listbox={{ style:{ fontFamily: "IBM Plex Sans Thai"}  }}>
-          <Option>แบบขออนุมัติภายนอก</Option>
-          <Option>แบบขออนุมัติภายใน</Option>
-          <Option>แบบขออนุมัติการซื้อ</Option>
-          <Option>เอกสารอัปโหลด</Option>
-          <Option>สัญญา</Option>
-        </Dropdown>
-        </div>
-        <div className={styles.root}>
-          <DatePicker allowTextInput placeholder="ช่วงเวลา" root={{ style:{ fontFamily: "IBM Plex Sans Thai" }  }} appearance="outline"/>
-        </div>
       </div>
     </div>
 

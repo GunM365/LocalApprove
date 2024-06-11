@@ -33,7 +33,7 @@ function ApprovalDetail() {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await fetch('/api/v2/memos', {
+            const response = await fetch(`/api/v2/memos/${id}`, {
               headers: {
                   'x-api-key': process.env.REACT_APP_API_KEY
               }
@@ -42,13 +42,31 @@ function ApprovalDetail() {
             setMemoData(data); // Update the state with fetched data
         } catch (error) {
             console.error("Error fetching data:", error);
-        }
-        
+        }finally{
+          setIsLoading(false);
+        }  
     };
+    fetchData();  
+}, [id]);
 
-    fetchData(); 
-}, []);
-  
+// useEffect(() => {
+//   const fetchData = async () => {
+//       try {
+//           const response = await fetch('/api/v2/memos', {
+//             headers: {
+//                 'x-api-key': process.env.REACT_APP_API_KEY
+//             }
+//         });
+//           const data = await response.json();
+//           setMemoData(data); // Update the state with fetched data
+//       } catch (error) {
+//           console.error("Error fetching data:", error);
+//       }
+      
+//   };
+
+//   fetchData(); 
+// }, []);
     
   
   console.log(memoData)
