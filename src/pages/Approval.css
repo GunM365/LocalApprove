@@ -42,6 +42,7 @@
   text-decoration: underline;
   margin-right: 2vh;
   padding-top: 10px;
+  cursor: pointer;
 }
 .box {
   text-align: center;

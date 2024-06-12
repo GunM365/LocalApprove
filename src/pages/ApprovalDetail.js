@@ -10,6 +10,7 @@ import ModalReject from "../components/ModalReject";
 import ModalRejectSuccess from "../components/ModalRejectSuccess"
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import { useParams, Link } from "react-router-dom";
+import { saveAs } from 'file-saver';
 // Icon
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { IoReloadCircleOutline } from "react-icons/io5";
@@ -29,6 +30,7 @@ function ApprovalDetail() {
   const [showModalEditTwo, setShowEditTwo] = useState(false);
   const [showModalRejectOne, setShowRejectOne] = useState(false);
   const [showModalRejectTwo, setShowRejectTwo] = useState(false);
+  const [pdfData, setPdfData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,11 +48,41 @@ function ApprovalDetail() {
           setIsLoading(false);
         }  
     };
+      
     fetchData();  
 }, [id]);
+useEffect(() => {
+  const fetchData = async () => {
+      try {
+          // ... (fetch memoData logic)
 
+          // Fetch PDF data
+          const pdfResponse = await fetch(`/api/v2/memos/${id}/download-pdf/`, {
+              headers: {
+                  'x-api-key': process.env.REACT_APP_API_KEY
+              }
+          });
+          const pdfBlob = await pdfResponse.blob(); // Get the PDF as a Blob
+          setPdfData(URL.createObjectURL(pdfBlob)); // Create a URL for the Blob
+      } catch (error) {
+          // ... (error handling)
+      }
+  };
 
-    
+  fetchData();
+}, [id]);
+
+const handleDownload = async () => {
+  console.log("sorry")
+  try {
+    const response = await fetch(pdfData); 
+    const blob = await response.blob();
+    saveAs(blob, `memo_${id}.pdf`); // Save the PDF with a dynamic name
+  } catch (error) {
+    console.error("Error downloading PDF:", error);
+    // Handle the error (e.g., show a notification to the user)
+  }
+};
 
   const handleModalApprove = () => {
     setShowModalOne(!showModalOne);
@@ -194,12 +226,18 @@ function ApprovalDetail() {
               <button className="forward-page-doc">
                 <IoIosArrowForward style={{ marginLeft: "10" }} />
               </button>
-              <button className="download">
-                <GoDownload style={{ marginRight: "10" }} />
+              <button className="download" onClick={handleDownload}>
+                <GoDownload style={{ marginRight: "10" }}  />
                 ดาวน์โหลด
               </button>
             </div>
-            <div className="boxDoc">แสดงไฟล์เอกสาร</div>
+            <div className="boxDoc">
+            {pdfData ? (
+              <iframe src={pdfData} title="Memo PDF" width="100%" height="600px" />
+            ) : (
+              <p>Loading PDF...</p> // Or an appropriate loading indicator
+          )}
+            </div>
           </div>
           
           <div className="columnDetail">

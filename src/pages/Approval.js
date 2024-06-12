@@ -55,11 +55,18 @@ function App() {
   const [itemsPerPage] = useState(5);
   const styles = useStyles();
   const [memoData, setMemoData] = useState([]);
+  const [filteredMemos, setFilteredMemos] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  // const [selectedStatus, setSelectedStatus] = useState("ทั้งหมด");
  
-  const totalPages = Math.ceil(memoData.length / itemsPerPage); 
+  const totalPages = Math.ceil(filteredMemos.length / itemsPerPage); 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = memoData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredMemos.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleClearSearch = () => {
+    setSearchQuery(""); // Clear the search query
+  };
 
   //Fetch memoList from API
   useEffect(() => {
@@ -81,6 +88,31 @@ function App() {
     fetchData(); 
 }, []);
 
+useEffect(() => {
+  const filterMemos = () => {
+    let filtered = memoData;
+
+    // Filter by search query
+    if (searchQuery) {
+      filtered = filtered.filter(memo =>
+        memo.subject.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Filter by status
+    // if (selectedStatus !== "ทั้งหมด") {
+    //   filtered = filtered.filter(memo =>
+    //     memo.status === selectedStatus
+    //   );
+    // }
+
+    setFilteredMemos(filtered);
+    setCurrentPage(1); // Reset to the first page when filters change
+  };
+
+  filterMemos(); // Call filterMemos whenever dependencies change
+}, [memoData, searchQuery]);
+
   return (
     
     <FluentProvider theme={webLightTheme}>
@@ -90,10 +122,12 @@ function App() {
       <div className="text">รอการอนุมัติ</div>
       <div className="box">
         <div className="clear-search">
-          ล้างการค้นหา
+          <a onClick={handleClearSearch}>ล้างการค้นหา</a>
         </div>
         <div className={styles.root}>
-          <Input placeholder="ค้นหารายการ" input={{ style:{ fontFamily: "IBM Plex Sans Thai"}  }}/>
+          <Input placeholder="ค้นหารายการ" value={searchQuery}  input={{ style:{ fontFamily: "IBM Plex Sans Thai"}  }} onChange={(e) => {
+              setSearchQuery(e.target.value);
+            }}/>
           </div>
           
           <div className={styles.root}>
