@@ -95,7 +95,12 @@ function App() {
         <div className={styles.root}>
           <Input placeholder="ค้นหารายการ" input={{ style:{ fontFamily: "IBM Plex Sans Thai"}  }}/>
           </div>
+          
+          <div className={styles.root}>
+          <DatePicker allowTextInput placeholder="ช่วงเวลา" root={{ style:{ fontFamily: "IBM Plex Sans Thai" }  }} appearance="outline"/>
+        </div>
       </div>
+      
     </div>
 
     <div className="flex-container">
@@ -111,7 +116,7 @@ function App() {
           <Option>ไม่อนุมัติ</Option>
         </Dropdown>
       </div>
-
+      
       {/* table */}
       <Table data={currentItems} />
 
