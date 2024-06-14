@@ -4,17 +4,8 @@
     },
     "routes": [
       {
-        "route": "/api/v2/memos/*",
-        "allowedMethods": ["*"]
+        "route": "/api/v2/memos/*"
       }
-    ],
-    "proxies": {
-      "api": {
-        "matchCondition": {
-          "route": "/api/v2/memos/*"
-        },
-        "backendUri": "https://testfuncapp365.azurewebsites.net/api/v2/memos/"
-      }
-    }
+    ]
   }
   
