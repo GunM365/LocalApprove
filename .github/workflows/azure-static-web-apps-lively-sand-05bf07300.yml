@@ -19,7 +19,8 @@ jobs:
         with:
           submodules: true
           lfs: false
-
+      - name: Change Ownership of .git Directory
+        run: chown -R $(id -u):$(id -g) .git/
       - name: Disable CI  
         run:  echo "CI=false" >> $GITHUB_ENV
       - name: Build And Deploy
