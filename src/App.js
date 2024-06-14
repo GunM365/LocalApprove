@@ -13,6 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route>
+          <></>
           <Route index element={<Approval />}/>
           <Route path='/ApprovalDetail/:id' element={<ApprovalDetail />} />
           {/* <Route path="blogs" element={<Blogs />} /> */}
