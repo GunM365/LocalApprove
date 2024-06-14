@@ -1,12 +1,20 @@
 {
+    "navigationFallback": {
+      "rewrite": "/"
+    },
     "routes": [
       {
-        "route": "/*",
-        "statusCode": 200
+        "route": "/api/v2/memos/*",
+        "allowedMethods": ["*"]
       }
     ],
-    "navigationFallback": {
-      "rewrite": "/index.html"
+    "proxies": {
+      "api": {
+        "matchCondition": {
+          "route": "/api/v2/memos/*"
+        },
+        "backendUri": "https://testfuncapp365.azurewebsites.net/api/v2/memos/"
+      }
     }
   }
   
