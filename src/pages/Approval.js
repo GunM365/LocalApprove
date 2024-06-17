@@ -57,6 +57,7 @@ function App() {
   const [memoData, setMemoData] = useState([]);
   const [filteredMemos, setFilteredMemos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentUserEmail, setCurrentUserEmail] = useState(null);
   // const [selectedStatus, setSelectedStatus] = useState("ทั้งหมด");
  
   const totalPages = Math.ceil(filteredMemos.length / itemsPerPage); 
@@ -112,6 +113,22 @@ useEffect(() => {
 
   filterMemos(); // Call filterMemos whenever dependencies change
 }, [memoData, searchQuery]);
+
+
+async function getLoggedInUserEmail() {
+  const clientPrincipal = await window.fetch('/.auth/me').then(r => r.json());
+  return clientPrincipal?.userDetails; 
+}
+
+useEffect(() => {
+  async function fetchData() {
+    const email = await getLoggedInUserEmail(); // Implement this function
+    setCurrentUserEmail(email);
+    console.log(currentUserEmail);
+  }
+  fetchData();
+}, []);
+
 
   return (
     
