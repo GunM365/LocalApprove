@@ -65,7 +65,7 @@ useEffect(() => {
           const pdfBlob = await pdfResponse.blob(); // Get the PDF as a Blob
           setPdfData(URL.createObjectURL(pdfBlob)); // Create a URL for the Blob
       } catch (error) {
-          // ... (error handling)
+          setError("There is no PDF for this requset");
       }
   };
 
