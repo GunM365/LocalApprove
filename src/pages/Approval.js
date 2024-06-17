@@ -57,7 +57,7 @@ function App() {
   const [memoData, setMemoData] = useState([]);
   const [filteredMemos, setFilteredMemos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentUserEmail, setCurrentUserEmail] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
   // const [selectedStatus, setSelectedStatus] = useState("ทั้งหมด");
  
   const totalPages = Math.ceil(filteredMemos.length / itemsPerPage); 
@@ -114,21 +114,24 @@ useEffect(() => {
   filterMemos(); // Call filterMemos whenever dependencies change
 }, [memoData, searchQuery]);
 
-
-async function getLoggedInUserEmail() {
-  console.log("Try to get uEmail")
-  const clientPrincipal = await window.fetch('/.auth/me').then(r => r.json());
-  return clientPrincipal?.userDetails; 
-}
-
 useEffect(() => {
-  async function fetchData() {
-    const email = await getLoggedInUserEmail(); // Implement this function
-    setCurrentUserEmail(email);
-    console.log(currentUserEmail);
-  }
-  fetchData();
+  const fetchUserInfo = async () => {
+    try {
+      const response = await fetch('/.auth/me');
+      const data = await response.json();
+      
+      if (data && data.clientPrincipal) {
+        setUserInfo(data.clientPrincipal);
+      }
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+      // Handle error (e.g., show error message)
+    }
+  };
+
+  fetchUserInfo(); 
 }, []);
+
 
 
   return (
