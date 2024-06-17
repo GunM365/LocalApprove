@@ -237,7 +237,7 @@ const handleDownload = async () => {
             {pdfData ? (
               <iframe src={pdfData} title="Memo PDF" width="100%" height="600px" />
             ) : (
-              <p>Loading PDF...</p> // Or an appropriate loading indicator
+              <p>Couldn't find PDF</p> // Or an appropriate loading indicator
           )}
             </div>
           </div>
