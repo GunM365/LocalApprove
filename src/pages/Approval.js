@@ -116,6 +116,7 @@ useEffect(() => {
 
 
 async function getLoggedInUserEmail() {
+  console.log("Try to get uEmail")
   const clientPrincipal = await window.fetch('/.auth/me').then(r => r.json());
   return clientPrincipal?.userDetails; 
 }
