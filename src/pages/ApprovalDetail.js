@@ -65,7 +65,7 @@ useEffect(() => {
           const pdfBlob = await pdfResponse.blob(); // Get the PDF as a Blob
           setPdfData(URL.createObjectURL(pdfBlob)); // Create a URL for the Blob
       } catch (error) {
-          setError("There is no PDF for this requset");
+          console.error("Error downloading PDF:", error);
       }
   };
 
@@ -73,7 +73,6 @@ useEffect(() => {
 }, [id]);
 
 const handleDownload = async () => {
-  console.log("sorry")
   try {
     const response = await fetch(pdfData); 
     const blob = await response.blob();
