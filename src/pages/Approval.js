@@ -157,7 +157,17 @@ useEffect(() => {
       </div>
       
     </div>
-<></>
+    <div>
+      {userInfo ? (
+        <div>
+          <h2>Welcome, {userInfo.userDetails}!</h2>
+          <p>User ID: {userInfo.userId}</p>
+          {/* Display other relevant user information */}
+        </div>
+      ) : (
+        <p>Loading user info...</p>
+      )}
+    </div>
     <div className="flex-container">
       <div className="text1" style={{ marginTop: 50 }}>
         รายการอนุมัติ
