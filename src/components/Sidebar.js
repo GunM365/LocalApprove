@@ -12,7 +12,7 @@ const Sidebar = ({data}) => {
     const ccElements = data.cc ? (
         <>
           {data.cc.map((email, index) => (
-            <div key={index}><a>{email}</a></div>
+            <div key={index}> <a>{email}</a> </div>
           ))}
         </>
       ) : "ไม่มีสำเนาถึง";

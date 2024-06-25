@@ -244,10 +244,6 @@ const handleDownload = async () => {
             {console.log(memoData)}
           {memoData && <Sidebar data={memoData} />}
           </div>
-          
-
-
-
         </div>
       </div>
     </FluentProvider>
