@@ -62,10 +62,13 @@ useEffect(() => {
                   'x-api-key': process.env.REACT_APP_API_KEY
               }
           });
+          if (!pdfResponse.ok) {
+            throw new Error(`Failed to fetch PDF: ${pdfResponse.statusText}`);
+        }
           const pdfBlob = await pdfResponse.blob(); // Get the PDF as a Blob
           setPdfData(URL.createObjectURL(pdfBlob)); // Create a URL for the Blob
       } catch (error) {
-          // ... (error handling)
+          console.error("Error downloading PDF:", error);
       }
   };
 
@@ -73,7 +76,6 @@ useEffect(() => {
 }, [id]);
 
 const handleDownload = async () => {
-  console.log("sorry")
   try {
     const response = await fetch(pdfData); 
     const blob = await response.blob();
@@ -235,7 +237,7 @@ const handleDownload = async () => {
             {pdfData ? (
               <iframe src={pdfData} title="Memo PDF" width="100%" height="600px" />
             ) : (
-              <p>Loading PDF...</p> // Or an appropriate loading indicator
+              <p>Couldn't find PDF</p> // Or an appropriate loading indicator
           )}
             </div>
           </div>

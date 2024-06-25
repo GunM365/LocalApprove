@@ -57,6 +57,7 @@ function App() {
   const [memoData, setMemoData] = useState([]);
   const [filteredMemos, setFilteredMemos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [userInfo, setUserInfo] = useState(null);
   // const [selectedStatus, setSelectedStatus] = useState("ทั้งหมด");
  
   const totalPages = Math.ceil(filteredMemos.length / itemsPerPage); 
@@ -113,6 +114,26 @@ useEffect(() => {
   filterMemos(); // Call filterMemos whenever dependencies change
 }, [memoData, searchQuery]);
 
+useEffect(() => {
+  const fetchUserInfo = async () => {
+    try {
+      const response = await fetch('/.auth/me');
+      const data = await response.json();
+      
+      if (data && data.clientPrincipal) {
+        setUserInfo(data.clientPrincipal);
+      }
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+      // Handle error (e.g., show error message)
+    }
+  };
+
+  fetchUserInfo(); 
+}, []);
+
+
+
   return (
     
     <FluentProvider theme={webLightTheme}>
@@ -136,7 +157,17 @@ useEffect(() => {
       </div>
       
     </div>
-<></>
+    <div>
+      {userInfo ? (
+        <div>
+          <h2>Welcome, {userInfo.userDetails}!</h2>
+          <p>User ID: {userInfo.userId}</p>
+          {/* Display other relevant user information */}
+        </div>
+      ) : (
+        <p>Loading user info...</p>
+      )}
+    </div>
     <div className="flex-container">
       <div className="text1" style={{ marginTop: 50 }}>
         รายการอนุมัติ
