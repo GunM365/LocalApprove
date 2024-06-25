@@ -114,23 +114,23 @@ useEffect(() => {
   filterMemos(); // Call filterMemos whenever dependencies change
 }, [memoData, searchQuery]);
 
-useEffect(() => {
-  const fetchUserInfo = async () => {
-    try {
-      const response = await fetch('/.auth/me');
-      const data = await response.json();
+// useEffect(() => {
+//   const fetchUserInfo = async () => {
+//     try {
+//       const response = await fetch('/.auth/me');
+//       const data = await response.json();
       
-      if (data && data.clientPrincipal) {
-        setUserInfo(data.clientPrincipal);
-      }
-    } catch (error) {
-      console.error("Error fetching user info:", error);
-      // Handle error (e.g., show error message)
-    }
-  };
+//       if (data && data.clientPrincipal) {
+//         setUserInfo(data.clientPrincipal);
+//       }
+//     } catch (error) {
+//       console.error("Error fetching user info:", error);
+//       // Handle error (e.g., show error message)
+//     }
+//   };
 
-  fetchUserInfo(); 
-}, []);
+//   fetchUserInfo(); 
+// }, []);
 
 
 
